@@ -14,4 +14,5 @@ def test_calculate_price_n_return():
     assert isinstance(pnr[1], float),'pnr[1] should be float'
 
 
+
 test_calculate_price_n_return()
