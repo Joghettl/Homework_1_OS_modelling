@@ -19,6 +19,16 @@ def test_calculate_interestrate():
     assert isinstance(interest_rate, float),'interest_rate should be float'
     if(interest_rate>0.1): raise ValueError('interest_rate out of range')
 
+def test_calculate_npv():
+    p_invest= 640
+    life_t= 23
+    p= 0.24
+    r= 0.06
+    interest_r= 0.04
+    npv= HW2.calculate_npv(p_invest, life_t, p, r, interest_r)
+    assert isinstance(npv, float),'npv should be float'
 
 test_calculate_price_n_return()
 test_calculate_interestrate()
+test_calculate_npv()
+
