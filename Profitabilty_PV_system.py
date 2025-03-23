@@ -8,7 +8,7 @@ def calculate_price_n_return(p_supply,p_grid_var, p_grid_fixed, r_sales, grid_pu
     p=(grid_purchase*p_supply)+(grid_purchase*p_grid_var)+p_grid_fixed
     if(grid_purchase==grid_a): r= overproduction_a*r_sales
     elif(grid_purchase==load_a):r=generation_a*r_sales
-    else: r=0
+    else: r=0.0
     return p, r
 
 
@@ -17,6 +17,7 @@ def calculation_interestrate(Matrikelnummer):
     a=((q * 5) % 40) * 10**-2
     if(a>0.1):
         a=0.05
+    elif(a < 0.001): a=0.001
     return a
 
 # NPV for the PV-system
@@ -28,7 +29,7 @@ def calculate_npv(p_invest, life_t, p, r, interest_r):
         npv_1 += r/(1+interest_r)**t
     return npv_1
 
-MatrNr = 12122289
+MatrNr = 12012289
 interest_rate = calculation_interestrate(MatrNr)
 print(interest_rate)
 
@@ -63,7 +64,7 @@ P_1 = calculate_price_n_return(P_supply,P_grid_var,P_grid_fixed, R_sales, grid_a
 R_1 = calculate_price_n_return(P_supply,P_grid_var,P_grid_fixed, R_sales, grid_a)[1]
 npv_1 = calculate_npv(P_invest,lifetime,P_1, R_1, interest_rate)
 
-print("Net Present Value over the entire technical lifetime of the PV system is",round(npv_1,2))
+
 
 
 
@@ -82,9 +83,6 @@ R_2a = calculate_price_n_return(P_supply,P_grid_var,P_grid_fixed, R_sales, load_
 npv_2 = calculate_npv(0.0, lifetime, P_2, R_2, interest_rate)
 npv_2a = calculate_npv(P_invest, lifetime, P_2a, R_2a, interest_rate)
 
-print("Net Present Value from pure electricity purchase with no pv installed is",round(npv_2,2))
-print("Net Present Value from pure electricity purchase with pv installed is",round(npv_2a,2))
-
 
 
 # %% [markdown]
@@ -96,7 +94,10 @@ P_3 = calculate_price_n_return(P_supply,P_grid_var,P_grid_fixed, 0, grid_a)[0]
 R_3 = calculate_price_n_return(P_supply,P_grid_var,P_grid_fixed, 0, grid_a)[1]
 npv_3 = calculate_npv(P_invest, lifetime, P_3, R_3, interest_rate)
 
-
+"""
+print("Net Present Value over the entire technical lifetime of the PV system is",round(npv_1,2))
+print("Net Present Value from pure electricity purchase with no pv installed is",round(npv_2,2))
+print("Net Present Value from pure electricity purchase with pv installed is",round(npv_2a,2))
 print("Net Present Value if there is no remuneration for surplus feed-in is",round(npv_3,2))
 
-
+"""
