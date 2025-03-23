@@ -17,6 +17,7 @@ def calculation_interestrate(Matrikelnummer):
     a=((q * 5) % 40) * 10**-2
     if(a>0.1):
         a=0.05
+    elif(a < 0.001): a=0.001
     return a
 
 # NPV for the PV-system
@@ -28,7 +29,7 @@ def calculate_npv(p_invest, life_t, p, r, interest_r):
         npv_1 += r/(1+interest_r)**t
     return npv_1
 
-MatrNr = 12122289
+MatrNr = 12012289
 interest_rate = calculation_interestrate(MatrNr)
 print(interest_rate)
 
