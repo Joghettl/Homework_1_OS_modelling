@@ -17,7 +17,7 @@ def test_calculate_interestrate():
     Matrikelnummer = 12133389
     interest_rate = HW2.calculation_interestrate(Matrikelnummer)
     assert isinstance(interest_rate, float),'interest_rate should be float'
-    if(interest_rate>0.1): raise ValueError('interest_rate out of range')
+    if(interest_rate>0.1): pytest.raises(ValueError)('interest_rate out of range')
 
 def test_calculate_npv():
     p_invest= 640
