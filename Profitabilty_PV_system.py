@@ -5,6 +5,9 @@
 
 #functions
 def calculate_price_n_return(p_supply,p_grid_var, p_grid_fixed, r_sales, grid_purchase):
+    """
+    The aim of this function is to calculate the annuitys for the electricity price and the return (profits) from the PV-system
+    """
     p=(grid_purchase*p_supply)+(grid_purchase*p_grid_var)+p_grid_fixed
     if(grid_purchase==grid_a): r= overproduction_a*r_sales
     elif(grid_purchase==load_a):r=generation_a*r_sales
@@ -12,7 +15,10 @@ def calculate_price_n_return(p_supply,p_grid_var, p_grid_fixed, r_sales, grid_pu
     return p, r
 
 
-def calculation_interestrate(Matrikelnummer):     
+def calculation_interestrate(Matrikelnummer): 
+    """
+    This function determines the interest rate dependent on the 'Matrikelnummer'.  
+    """
     q = sum(int(digit) for digit in str(Matrikelnummer))
     a=((q * 5) % 40) * 10**-2
     if(a>0.1):
@@ -22,6 +28,9 @@ def calculation_interestrate(Matrikelnummer):
 
 # NPV for the PV-system
 def calculate_npv(p_invest, life_t, p, r, interest_r):
+    """
+    This function calculates the net present value for the whole household in terms of electricity.
+    """
     npv_1 = -p_invest  
 
     for t in range (1, life_t + 1):
@@ -31,7 +40,7 @@ def calculate_npv(p_invest, life_t, p, r, interest_r):
 
 MatrNr = 12012289
 interest_rate = calculation_interestrate(MatrNr)
-print(interest_rate)
+
 
 C_installed = 3 #kWp
 P_invest_spec = 800 #€/kWp
@@ -94,10 +103,9 @@ P_3 = calculate_price_n_return(P_supply,P_grid_var,P_grid_fixed, 0, grid_a)[0]
 R_3 = calculate_price_n_return(P_supply,P_grid_var,P_grid_fixed, 0, grid_a)[1]
 npv_3 = calculate_npv(P_invest, lifetime, P_3, R_3, interest_rate)
 
-"""
+
 print("Net Present Value over the entire technical lifetime of the PV system is",round(npv_1,2))
 print("Net Present Value from pure electricity purchase with no pv installed is",round(npv_2,2))
 print("Net Present Value from pure electricity purchase with pv installed is",round(npv_2a,2))
 print("Net Present Value if there is no remuneration for surplus feed-in is",round(npv_3,2))
 
-"""
