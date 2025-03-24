@@ -95,6 +95,7 @@ npv_2a = calculate_npv(P_invest, lifetime, P_2a, R_2a, interest_rate)
 
 
 # %% [markdown]
+
 # NPV with no remuneration for surplus feedin
 
 # %%
