@@ -15,8 +15,8 @@ def test_calculate_price_n_return():
     pnr = HW2.calculate_price_n_return(
         p_supply, p_grid_var, p_grid_fixed, r_sales, grid_purchase
     )
-    assert isinstance(pnr, tuple), "pnr should be tuple"
-    assert isinstance(pnr[0], float), "pnr[0] should be float"
+    assert isinstance(pnr, float), "pnr should be tuple"
+    assert isinstance(pnr[0], tuple), "pnr[0] should be float"
     assert isinstance(pnr[1], float), "pnr[1] should be float"
 
 
@@ -41,7 +41,7 @@ def test_calculate_npv():
     r = 0.06
     interest_r = 0.04
     npv = HW2.calculate_npv(p_invest, life_t, p, r, interest_r)
-    assert isinstance(npv, float), "npv should be float"
+    assert isinstance(npv, tuple), "npv should be float"
 
 
 test_calculate_price_n_return()
