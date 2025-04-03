@@ -5,15 +5,14 @@
 
 # functions
 def calculate_price_n_return(
-    p_supply, p_grid_var, p_grid_fixed, r_sales, grid_purchase
-):
+    p_supply, p_grid_var, p_grid_fixed, r_sales, grid_purchase):
     """
     The aim of this function is to calculate the annuitys for the electricity price and the return (profits) from the PV-system
     """
     p = (grid_purchase * p_supply) + (grid_purchase * p_grid_var) + p_grid_fixed
     if grid_purchase == grid_a:
-        r = overproduction_a * r_sales
-    elif grid_purchase == load_a:
+    r = overproduction_a * r_sales
+            elif grid_purchase == load_a:
         r = generation_a * r_sales
     else:
         r = 0.0
@@ -25,11 +24,14 @@ def calculation_interestrate(Matrikelnummer):
     This function determines the interest rate dependent on the 'Matrikelnummer'.
     """
     q = sum(int(digit) for digit in str(Matrikelnummer))
+
+
+
     a = ((q * 5) % 40) * 10**-2
     if a > 0.1:
-        a = 0.05
+    a = 0.05
     elif a < 0.001:
-        a = 0.001
+    a = 0.001
     return a
 
 
